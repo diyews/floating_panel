@@ -23,6 +23,7 @@ class FloatBoxPanel extends StatefulWidget {
   final int panelAnimDuration;
   final Curve panelAnimCurve;
   final DockType dockType;
+  final bool defaultDock;
   final double dockOffset;
   final int dockAnimDuration;
   final Curve dockAnimCurve;
@@ -47,6 +48,7 @@ class FloatBoxPanel extends StatefulWidget {
       this.contentColor,
       this.panelShape,
       this.dockType,
+      this.defaultDock = false,
       this.dockOffset,
       this.dockAnimCurve,
       this.dockAnimDuration,
@@ -79,6 +81,12 @@ class _FloatBoxState extends State<FloatBoxPanel> {
   void initState() {
     _positionTop = widget.positionTop ?? 0;
     _positionLeft = widget.positionLeft ?? 0;
+    
+    if (widget.defaultDock) {
+      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        _forceDock();
+      });
+    }
 
     super.initState();
   }
