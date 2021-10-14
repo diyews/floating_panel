@@ -328,7 +328,7 @@ class _FloatBoxState extends State<FloatBoxPanel> {
     final buttons = widget.buttons;
 
     return Visibility(
-      visible: true, // TODO:: _contentVisibility,
+      visible: _panelState == PanelState.open, // TODO:: _contentVisibility,
       child: Container(
         child: Column(
           children: List.generate(
